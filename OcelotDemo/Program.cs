@@ -14,11 +14,35 @@ namespace OcelotDemo
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+           CreateWebHostBuilder(args).Build().Run();
+
+            //WebHost.CreateDefaultBuilder(args)
+            //   .ConfigureAppConfiguration((hostingContext, config) =>
+            //   {
+            //       config
+            //           .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+            //           .AddJsonFile("appsettings.json", true, true)
+            //           //.AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+            //           .AddJsonFile("Ocelot.json")
+            //           .AddEnvironmentVariables();
+            //   })
+            //   .UseUrls("http://localhost:1000")
+            //   .UseStartup<Startup>();
+
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config
+                        .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                        .AddJsonFile("appsettings.json", true, true)
+                        .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                        .AddJsonFile("Ocelot.json")
+                        .AddEnvironmentVariables();
+                })
+                .UseUrls("http://localhost:1000")
                 .UseStartup<Startup>();
     }
 }

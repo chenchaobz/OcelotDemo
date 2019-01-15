@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OcelotDemo.Controllers
+namespace WebApi1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -14,7 +14,7 @@ namespace OcelotDemo.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "ocelot", "value2" };
+            return new string[] { "webapi1", "value2" };
         }
 
         // GET api/values/5

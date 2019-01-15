@@ -10,10 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
 
-namespace OcelotDemo
+namespace WebApi1
 {
     public class Startup
     {
@@ -27,19 +25,11 @@ namespace OcelotDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddOcelot();//注入Ocelot服务
-            services.AddMvc();
-
-
-
-            //services.AddOcelot(new ConfigurationBuilder()
-            //        .AddJsonFile("ocelot.json")
-            //        .Build());
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -52,15 +42,7 @@ namespace OcelotDemo
             }
 
             app.UseHttpsRedirection();
-
-            app.UseOcelot().Wait();//使用Ocelot中间件
             app.UseMvc();
-
-
-
-
-
-
         }
     }
 }

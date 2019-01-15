@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.SelfHost;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+namespace WebApi2
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateWebHostBuilder(args).Build().Run();
+
+            //var config = new HttpSelfHostConfiguration("http://localhost:5001"); //配置主机
+
+            //config.Routes.MapHttpRoute(    //配置路由
+            //    "API Default", "api/{controller}/{id}",
+            //    new { id = RouteParameter.Optional });
+
+            //using (HttpSelfHostServer server = new HttpSelfHostServer(config)) //监听HTTP
+            //{
+            //    server.OpenAsync().Wait(); //开启来自客户端的请求
+            //    Console.WriteLine("Press Enter to quit");
+            //    Console.ReadLine();
+            //}
+
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                
+                .UseStartup<Startup>();
+    }
+}
